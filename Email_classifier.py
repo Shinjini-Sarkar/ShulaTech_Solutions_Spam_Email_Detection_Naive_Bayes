@@ -45,9 +45,9 @@ def predict_spam(email_text):
     #model.predict(data)always returns an array even if there is only one value
     prediction=model.predict(email_vector)
     if prediction[0]==1:
-       return "Spam"
-    else:
        return "Not Spam"
+    else:
+       return "Spam"
     
 
 spam_emails=load_data_from_folder(spam_folder_path,0)
@@ -85,8 +85,14 @@ print("\nClassification Report:\n",classification_report(y_test,y_pred))
 print("\nConfusion matrix\n",confusion_matrix(y_test,y_pred))
 
 #passing mails to the predict_spam method
-email=input("Enter your mail to check if it is spam or not:\n")
-print(f"Email : {predict_spam(email)}")
+while True:
+    email = input("Enter your email to check if it is spam or not:\n")
+    print(f"Email: {predict_spam(email)}")    
+    s = input("\nDo you want to check another email? (Y for yes, N for no): ").strip().upper()
+    if s != "Y":
+        break
+
+       
 
 
 
